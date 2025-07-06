@@ -13,249 +13,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #1e2124;
-        min-width: 250px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-        z-index: 20;
-        border-radius: 12px;
-        top: 120px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      
-      .dropdown-content.show {
-        display: block;
-      }
-      
-      .platform-card {
-        transition: all 0.3s ease;
-      }
-      
-      .platform-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      }
-      
-      .rank-badge {
-        border-radius: 8px;
-        padding: 2px 6px;
-        font-size: 12px;
-        font-weight: bold;
-      }
-      
-      .rank-1 {
-        background-color: #4ade80;
-        color: #111518;
-      }
-      
-      .rank-2 {
-        background-color: #facc15;
-        color: #111518;
-      }
-      
-      .rank-3 {
-        background-color: #fb923c;
-        color: #111518;
-      }
-      
-      .content-number {
-        background-color: #2c3135;
-        border-radius: 8px;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-      }
-      
-      .content-details {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-      }
-      
-      .content-details.expanded {
-        max-height: 500px;
-      }
-      
-      .platform-header {
-        display: flex;
-        margin-bottom: 10px;
-        font-weight: bold;
-        color: #9cabba;
-        border-bottom: 1px solid #283139;
-        padding-bottom: 8px;
-        font-size: 0.75rem;
-      }
-      
-      .platform-header-item {
-        flex: 1;
-        text-align: center;
-      }
-      
-      .platform-header-item:first-child {
-        flex: 2;
-        text-align: left;
-      }
-      
-      .platform-detail {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-        padding: 5px 0;
-      }
-      
-      .platform-logo-small {
-        width: 20px;
-        height: 20px;
-        object-fit: contain;
-        margin-right: 8px;
-      }
-      
-      .platform-name-container {
-        display: flex;
-        align-items: center;
-        flex: 2;
-      }
-      
-      .platform-name {
-        font-weight: bold;
-        margin-left: 5px;
-        color: white;
-      }
-      
-      .platform-metrics {
-        display: flex;
-        flex: 3;
-        justify-content: space-around;
-      }
-      
-      .platform-metrics .metric {
-        width: auto;
-        margin: 0;
-        flex: 1;
-        text-align: center;
-      }
-      
-      .curved-rectangle {
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-      }
-
-      /* Analytics section styles */
-      .analytics-card {
-        background-color: #1e2124;
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 16px;
-        transition: all 0.3s ease;
-      }
-      
-      .analytics-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      }
-      
-      .platform-info {
-        display: flex;
-        align-items: center;
-        margin-bottom: 16px;
-      }
-      
-      .platform-logo {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        margin-right: 16px;
-      }
-      
-      .metrics {
-        display: flex;
-        flex-grow: 1;
-        justify-content: space-around;
-      }
-      
-      .metric {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      
-      .metric i {
-        font-size: 18px;
-        margin-bottom: 5px;
-        color: #9cabba;
-      }
-      
-      .metric span {
-        font-weight: bold;
-        font-size: 14px;
-        color: white;
-        margin-bottom: 2px;
-      }
-      
-      .metric p {
-        font-size: 12px;
-        color: #9cabba;
-      }
-      
-      .platform-rank {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 12px;
-      }
-      
-      .platform-rank span {
-        font-weight: bold;
-        font-size: 12px;
-      }
-      
-      .view-btn {
-        background-color: #2c3135;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 12px;
-        color: #9cabba;
-        transition: all 0.3s;
-      }
-      
-      .view-btn:hover {
-        background-color: #3a3f45;
-        color: white;
-      }
-      
-      .see-all-btn {
-        background-color: #2c3135;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        display: block;
-        margin: 0 auto;
-        transition: all 0.3s;
-        width: auto;
-      }
-      
-      .see-all-btn:hover {
-        background-color: #3a3f45;
-      }
-
-      .nexus-flow-check {
-        margin-left: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
     <div
@@ -268,7 +26,7 @@
           </div>
           <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Profile</h2>
           <div class="flex w-12 items-center justify-end">
-            <button
+            <a href="#07_setting.html"
               class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
             >
               <div class="text-white" data-icon="Gear" data-size="24px" data-weight="regular">
@@ -278,7 +36,7 @@
                   ></path>
                 </svg>
               </div>
-            </button>
+            </a>
           </div>
         </div>
         <div class="pt-14"></div>
@@ -855,8 +613,8 @@
         </div>
       </div>
       <div>
-        <div class="flex gap-2 border-t border-[#283139] bg-[#1b2127] px-4 pb-3 pt-2 fixed bottom-0 left-0 right-0 z-10 curved-rectangle">
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="home.html">
+        <div class="flex gap-2 border-t border-[#283139] bg-[#1b2127] px-4 pb-3 pt-2 fixed bottom-0 left-0 right-0 z-10 profile-curved-rectangle">
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="#03_home.html">
             <div class="text-[#9cabba] flex h-8 items-center justify-center" data-icon="House" data-size="24px" data-weight="regular">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                 <path
@@ -866,7 +624,7 @@
             </div>
             <p class="text-[#9cabba] text-xs font-medium leading-normal tracking-[0.015em]">Home</p>
           </a>
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="design.html">
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="#04_design.html">
             <div class="text-[#9cabba] flex h-8 items-center justify-center" data-icon="Palette" data-size="24px" data-weight="regular">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                 <path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,88A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"></path>
@@ -874,7 +632,7 @@
             </div>
             <p class="text-[#9cabba] text-xs font-medium leading-normal tracking-[0.015em]">Design</p>
           </a>
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="post_gallery.html">
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#9cabba]" href="#05_post_gallery.html">
             <div class="text-[#9cabba] flex h-8 items-center justify-center" data-icon="Image" data-size="24px" data-weight="regular">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                 <path
@@ -884,7 +642,7 @@
             </div>
             <p class="text-[#9cabba] text-xs font-medium leading-normal tracking-[0.015em]">Gallery</p>
           </a>
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-white" href="#">
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-white" href="#06_profile.html">
             <div class="text-white flex h-8 items-center justify-center" data-icon="User" data-size="24px" data-weight="fill">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                 <path
@@ -898,45 +656,6 @@
         <div class="h-16 bg-[#1b2127]"></div>
       </div>
     </div>
-    
-    <script>
-      // Toggle dropdown when clicking on brand name
-      document.getElementById('brand-dropdown-toggle').addEventListener('click', function() {
-        document.getElementById('brand-dropdown').classList.toggle('show');
-      });
-      
-      // Close dropdown when clicking outside
-      window.addEventListener('click', function(event) {
-        if (!event.target.closest('#brand-dropdown-toggle') && !event.target.closest('#brand-dropdown')) {
-          document.getElementById('brand-dropdown').classList.remove('show');
-        }
-      });
-      
-      // Show Add Account popup
-      document.querySelector('#brand-dropdown button').addEventListener('click', function() {
-        document.getElementById('add-account-popup').classList.remove('hidden');
-        document.getElementById('brand-dropdown').classList.remove('show');
-      });
-      
-      // Close Add Account popup
-      document.getElementById('close-popup').addEventListener('click', function() {
-        document.getElementById('add-account-popup').classList.add('hidden');
-      });
-      
-      // Toggle content details
-      document.querySelectorAll('.content-toggle').forEach(function(button) {
-        button.addEventListener('click', function() {
-          const contentId = this.getAttribute('data-content-id');
-          document.getElementById(contentId).classList.toggle('expanded');
-          
-          // Rotate arrow icon
-          if (document.getElementById(contentId).classList.contains('expanded')) {
-            this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,154.34a8,8,0,0,1-11.32,0L128,80,53.66,154.34a8,8,0,0,1-11.32-11.32l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,213.66,154.34Z"></path></svg>';
-          } else {
-            this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>';
-          }
-        });
-      });
-    </script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>

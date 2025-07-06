@@ -1,0 +1,970 @@
+:root {
+  --bg-primary: #121416;
+  --bg-secondary: #1e2124;
+  --border-color: #2c3135;
+  --text-primary: #ffffff;
+  --text-secondary: #9cabba;
+  --accent-color: #dce8f3; /* Used for highlighting and accent */
+  --accent-hover: #c5d5e8; /* Lighter accent for hover */
+  --bottom-nav-height: 60px; /* Standard height for bottom navigation */
+  --header-height: 56px;     /* Standard height for top header */
+  --toolbar-height: 48px;    /* Standard height for secondary toolbar */
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px); /* For iPhone X like devices */
+  --opacity-panel-height: 100px; /* Specific to opacity panel */
+  --scale-panel-height: 160px;   /* Specific to scale panel */
+  --blend-panel-height: 240px;   /* Specific to blend panel */
+  --blend-panel-minimized-height: 48px; /* Minimized blend panel */
+}
+
+* {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  -webkit-touch-callout: none; /* Disable callouts, like when holding a link */
+  box-sizing: border-box; /* Consistent box model */
+}
+
+html {
+  height: 100%; /* Ensure HTML takes full height for viewport units */
+}
+
+body {
+  height: 100vh; /* Fallback for older browsers */
+  height: calc(var(--vh, 1vh) * 100); /* Dynamic viewport height */
+  position: relative; /* For absolutely positioned children or pseudo-elements */
+  overflow: hidden; /* Prevent scrolling on the body itself */
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset default padding */
+  touch-action: manipulation; /* Improve touch responsiveness */
+  font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
+  background-color: var(--bg-primary); /* Use CSS variable */
+  color: var(--text-primary);       /* Use CSS variable */
+  /* height: 100vh; /* Managed by html, body height settings above */
+  overflow-x: hidden; /* Prevent horizontal scroll on body, common in later pages */
+}
+
+/* App Structure & Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill viewport */
+  width: 100%;
+  position: relative;
+}
+
+.header {
+  height: var(--header-height);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-primary);
+  position: relative; /* Or fixed/sticky depending on desired behavior */
+  z-index: 20; /* Above other content */
+}
+
+.toolbar {
+  height: var(--toolbar-height);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  /* margin-bottom: 8px; /* Added in 8_heading.html, consider if global or specific */
+}
+
+.content-area {
+  flex: 1; /* Take remaining vertical space */
+  overflow-y: auto; /* Allow scrolling for content */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  padding: 16px;
+  position: relative; /* For positioning child elements like bottom sheets */
+  /* padding-bottom adjusted by specific panel heights in different files, handle carefully or make it large enough */
+}
+
+
+/* Splash Screen Specific Styles */
+.splash-body { /* More specific selector for splash body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* specific to splash */
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeInSplash 1s ease-in-out; /* Renamed to avoid conflict */
+}
+
+.splash-logo-container { /* More specific selector */
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.logo { /* General logo style */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.app-name { /* General app name style */
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.015em;
+}
+
+@keyframes fadeInSplash { /* Renamed */
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Welcome Screen Specific Styles */
+.welcome-body { /* More specific selector for welcome body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* specific to welcome */
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  animation: fadeInWelcome 1s ease-in-out; /* Renamed */
+}
+
+.welcome-logo-container { /* More specific selector */
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9cabba;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #121416;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.google-login-btn:hover {
+  background-color: #f1f1f1;
+}
+
+.google-icon {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+.skip-link {
+  color: #9cabba;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 16px;
+  transition: color 0.2s ease;
+}
+
+.skip-link:hover {
+  color: white;
+}
+
+@keyframes fadeInWelcome { /* Renamed and using the version with translateY */
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styles from home.html and design.html */
+.curved-rectangle {
+  border-radius: 16px;
+}
+
+/* Generic font style from home.html's body style attribute, applied to a general class if needed or body */
+/* body already has font-family, this style was on a div with class "group/design-root" */
+.group\/design-root { /* Tailwind uses group utilities, this might be fine with Tailwind enabled */
+  /* font-family: "Be Vietnam Pro", "Noto Sans", sans-serif; /* Already in body */
+}
+
+/* Styles from profile.html */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #1e2124;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  z-index: 20;
+  border-radius: 12px;
+  top: 120px; /* Adjust as needed based on final layout */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.platform-card { /* This class seems to be intended for general platform cards if any */
+  transition: all 0.3s ease;
+}
+
+.platform-card:hover { /* Hover effect for platform cards */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.rank-badge {
+  border-radius: 8px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.rank-1 {
+  background-color: #4ade80; /* Tailwind green-500 */
+  color: #111518; /* Dark text for contrast */
+}
+
+.rank-2 {
+  background-color: #facc15; /* Tailwind yellow-400 */
+  color: #111518;
+}
+
+.rank-3 {
+  background-color: #fb923c; /* Tailwind orange-400 */
+  color: #111518;
+}
+
+.content-number { /* For Best Content section */
+  background-color: #2c3135;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white; /* Ensure text is visible */
+}
+
+.content-details { /* For Best Content section */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; /* Smoother transition */
+}
+
+.content-details.expanded { /* For Best Content section */
+  max-height: 500px; /* Adjust as needed */
+}
+
+.platform-header { /* For Best Content details table */
+  display: flex;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #9cabba;
+  border-bottom: 1px solid #283139;
+  padding-bottom: 8px;
+  font-size: 0.75rem; /* 12px */
+}
+
+.platform-header-item { /* For Best Content details table */
+  flex: 1;
+  text-align: center;
+}
+
+.platform-header-item:first-child { /* For Best Content details table - Platform name column */
+  flex: 2;
+  text-align: left;
+}
+
+.platform-detail { /* For Best Content details table row */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Spacing between platform rows */
+  padding: 5px 0;
+}
+
+.platform-logo-small { /* For Best Content platform icons */
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+
+.platform-name-container { /* For Best Content platform name column */
+  display: flex;
+  align-items: center;
+  flex: 2; /* Corresponds to header */
+}
+
+.platform-name { /* For Best Content platform name text */
+  font-weight: bold;
+  margin-left: 5px;
+  color: white;
+  font-size: 0.875rem; /* 14px */
+}
+
+.platform-metrics { /* Container for metrics in Best Content details */
+  display: flex;
+  flex: 3; /* Corresponds to header (Likes, Comments, Growth) */
+  justify-content: space-around;
+}
+
+.platform-metrics .metric { /* Individual metric in Best Content details */
+  flex: 1;
+  text-align: center;
+  font-size: 0.875rem; /* 14px */
+  color: white;
+}
+
+/* Specific curved rectangle for profile page bottom nav */
+.profile-curved-rectangle {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Analytics section styles (profile.html) */
+.analytics-card {
+  background-color: #1e2124; /* Darker card background */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.analytics-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.platform-info { /* Container for logo and metrics in analytics card */
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.platform-logo { /* For Analytics card platform icons */
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 16px;
+}
+
+.metrics { /* Container for all three metrics in analytics card */
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.metric { /* General style for a single metric block (icon, value, label) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metric i { /* FontAwesome icons in analytics */
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #9cabba; /* Icon color */
+}
+
+.metric span { /* Metric value (e.g., 12.5K) */
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.metric p { /* Metric label (e.g., Followers) */
+  font-size: 12px;
+  color: #9cabba;
+}
+
+.platform-rank { /* Container for rank badge and view button */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.platform-rank span { /* Text part of rank badge, if any, or general text */
+  font-weight: bold;
+  font-size: 12px;
+  /* color is handled by .rank-badge specific classes */
+}
+
+.view-btn { /* View Profile button in analytics card */
+  background-color: #2c3135;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #9cabba;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.view-btn:hover {
+  background-color: #3a3f45;
+  color: white;
+}
+
+.see-all-btn { /* See All button below analytics cards */
+  background-color: #2c3135;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500; /* Medium weight */
+  display: block; /* Or inline-block if preferred */
+  margin: 0 auto; /* Center the button */
+  transition: background-color 0.3s;
+  width: auto; /* Fit content */
+}
+
+.see-all-btn:hover {
+  background-color: #3a3f45;
+}
+
+/* .nexus-flow-check was in the CSS but not in HTML, remove if not used */
+
+/* === STYLES FROM 1_image-import.html === */
+.icon-button { /* General style for icon-only buttons */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.icon-button:hover {
+  background-color: #2c3135; /* var(--border-color) could be an alternative */
+}
+
+.select-button { /* Primary action buttons in 1_image-import.html */
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  /* background-color: #dce8f3; /* var(--accent-color) */
+  /* color: #121416; /* var(--bg-primary) */
+  /* Tailwind classes are used for bg/text color, so this might be redundant if Tailwind is always present */
+}
+.select-button:hover {
+  background-color: #4299e1; /* Consider using a CSS variable for this hover color if it's common */
+}
+.select-button:active {
+  transform: scale(0.98);
+}
+
+.search-input { /* For Pexels search in 1_image-import.html */
+  border-color: var(--border-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary); /* Changed from #1e2124 to be visible */
+}
+.search-input:focus {
+  border-color: #4299e1; /* Consistent with .select-button:hover, consider variable */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Soft blue glow */
+}
+
+
+/* === STYLES FROM 2_image.html and subsequent numbered files === */
+/* Many general styles like .app-container, .header, .toolbar, .content-area, .bottom-nav etc. are already defined above */
+
+/* Bottom Sheet (General for panels popping from bottom) */
+.bottom-sheet {
+  position: fixed; /* Changed from absolute for consistency across files */
+  bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 8px); /* Position above bottom nav */
+  left: 16px;
+  right: 16px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Below main bottom nav (15) but above content */
+  transform-origin: bottom center;
+  transition: transform 0.3s ease, opacity 0.3s ease, height 0.3s ease; /* Added height transition */
+  height: auto; /* Default, specific panels might override or use 'collapsed' state */
+  max-height: 70vh; /* Prevent sheet from taking too much space, adjust as needed */
+  overflow-y: auto; /* Scroll content within sheet if it overflows */
+}
+
+.bottom-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer; /* Indicate it's clickable for expand/collapse */
+}
+
+.bottom-sheet-content {
+  padding: 12px;
+  opacity: 1; /* Default state */
+  transition: opacity 0.2s ease; /* For smooth hide/show on collapse */
+}
+
+.bottom-sheet.collapsed { /* State for minimized bottom sheet */
+  height: var(--blend-panel-minimized-height, 48px) !important; /* Use specific var or fallback */
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.bottom-sheet.collapsed .bottom-sheet-content {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction when collapsed */
+  padding:0;
+}
+
+.bottom-sheet.collapsed .bottom-sheet-header {
+  justify-content: space-between; /* Keep space-between for consistent look */
+}
+
+/* Bottom Navigation (already mostly defined, some refinements) */
+.bottom-nav-content {
+  justify-content: space-around; /* Ensure items spread out */
+}
+
+/* Preview Image Specifics (from 2_image.html, 3_image_align.html) */
+.preview-image {
+  /* Default styles from 2_image.html */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  touch-action: none;
+  transform: translate(0px, 0px);
+  transition: all 0.2s ease; /* From 3_image_align.html for alignment changes */
+
+  /* Centering styles from 3_image_align.html, applied when alignment is active */
+  /* position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); */
+}
+
+.preview-image.align-active { /* Use a class to toggle alignment centering */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* Image Name Input (from 2_image.html) */
+.image-name-input {
+  background-color: var(--bg-secondary) !important;
+  border: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 4px 0; /* Minimal padding */
+  flex-grow: 1;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+.image-name-input:focus {
+  border-bottom: 1px solid var(--accent-color);
+}
+.image-name-input[readonly] {
+  pointer-events: auto; /* Allow click for focus */
+  cursor: pointer;
+}
+.image-name-input:not([readonly]) {
+  cursor: text; /* Text cursor when editable */
+}
+
+/* Alignment Styles (from 3_image_align.html) */
+.align-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+.align-tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+.align-tab.active {
+  color: var(--accent-color);
+}
+.align-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; /* Align with border-bottom of .align-tabs */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+.align-content {
+  display: none; /* Hidden by default */
+}
+.align-content.active {
+  display: flex;
+  justify-content: space-around; /* Evenly space align buttons */
+}
+.align-btn {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  margin: 0 4px; /* Reduced margin for tighter fit if needed */
+}
+.align-btn.active {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  border-color: var(--accent-color);
+}
+.align-btn:active {
+  opacity: 0.8;
+}
+.align-heading {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.section { /* General class for tabbed content areas */
+  display: none;
+}
+.section.active {
+  display: block;
+}
+
+/* Platform Selector (from 4_platform.html) */
+.platform-selector .platform-item .platform-icon-btn {
+  /* Tailwind classes handle most styling, this is for active state */
+  transition: background-color 0.2s ease;
+}
+.platform-selector .platform-item .platform-icon-btn.active {
+  background-color: var(--accent-color); /* Highlight for active platform */
+}
+.platform-selector .platform-item .platform-icon-btn.active .platform-icon {
+  color: var(--bg-primary); /* Icon color changes on active */
+}
+.platform-selector .platform-item .platform-icon-btn.active + .text-xs {
+  color: var(--accent-color); /* Label color changes on active */
+}
+
+
+/* Opacity/Scale/Blend/Heading Panel Styles */
+/* .opacity-panel, .scale-panel, .blend-panel, .formatting-menu are all types of bottom sheets */
+/* Their specific heights are defined in :root or can be overridden by .minimized */
+
+.btn-reset { /* Common reset button style */
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-reset:active {
+  background-color: rgba(220, 232, 243, 0.1); /* Subtle press effect */
+}
+
+/* Scale Panel Specific (from 6_scale.html) */
+.btn-scale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 8px; /* Matches .btn-reset */
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+.btn-scale-active {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+}
+.btn-scale-inactive {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+}
+.btn-scale-inactive:active {
+  background-color: rgba(44, 49, 53, 0.8); /* Darken on press */
+}
+
+/* Blend Panel Specific (from 7_blend.html) */
+.dark-blend-layer { /* Preview overlay */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%; /* Default, can be changed by JS */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  pointer-events: none; /* Allow clicks through */
+}
+.tab-container { /* For Opacity/Blur/Height tabs */
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+.tab { /* Individual tab in blend panel */
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.tab.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+.btn-blend { /* Buttons like Top/Bottom, Blend/Text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 24px; /* Pill shape */
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+.btn-blend-active {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+}
+.btn-blend-inactive {
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+}
+.btn-blend-inactive:active {
+  background-color: rgba(44, 49, 53, 0.8);
+}
+
+
+/* Heading Panel Specific (from 8_heading.html) */
+.icon-selected { /* For active tool in formatting bar */
+  /* border-bottom: 2px solid var(--accent-color); /* This might be too much with icons */
+  color: var(--accent-color) !important; /* Ensure icon color changes */
+}
+.icon-selected .material-icons-outlined,
+.icon-selected .material-icons {
+  color: var(--accent-color) !important;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* .heading-tools container styling is handled by .formatting-menu and its content structure */
+.tool-active { color: var(--accent-color); } /* Active state for formatting icons */
+.tool-inactive { color: var(--text-secondary); } /* Inactive state */
+
+.font-selection {
+  padding: 12px;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 12px;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  max-height: 200px; /* Adjusted from 300px to better fit typical panel height */
+}
+.font-selection::-webkit-scrollbar { display: none; }
+
+.font-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.font-item:hover, .font-item.selected {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle hover/selection */
+}
+.font-item.selected {
+  color: var(--accent-color);
+}
+.font-item-name {
+  font-size: 14px;
+  white-space: nowrap;
+}
+/* .font-item-check not used in provided HTML, can be removed or implemented if checkmark is desired */
+
+.size-spacing-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 8px; /* Added margin from slider input */
+}
+.size-spacing-value {
+  font-size: 13px;
+  color: var(--accent-color);
+}
+.size-spacing-control {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.editable-text { /* Preview text area in heading */
+  outline: none;
+  cursor: text;
+  min-height: 1em; /* Ensure it can be focused even if empty */
+  /* Font styles applied via JS */
+}
+
+.text-editing-controls { /* Popup for cancel/save text edits */
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%); /* Center more accurately */
+  background-color: var(--bg-secondary);
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  z-index: 200; /* High z-index */
+  display: none;
+  padding: 4px;
+}
+.text-editing-controls.visible {
+  display: flex;
+}
+
+/* Color Picker Popup (from 8_heading.html) */
+.color-picker-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  padding: 16px;
+  width: 90%;
+  max-width: 320px;
+  display: none;
+}
+.color-picker-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99; /* Below popup, above other content */
+  display: none;
+}
+.color-palette-horizontal { /* Container for color swatches */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* Spread swatches */
+  padding: 12px 0; /* Adjusted padding */
+  width: 100%;
+  overflow-x: auto; /* Allow scrolling if many custom colors */
+}
+.color-button { /* Individual color swatch */
+  width: 28px; /* Slightly larger for easier touch */
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent; /* Transparent border initially */
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin: 0 4px; /* Spacing between swatches */
+}
+.color-button.selected {
+  border-color: var(--accent-color);
+  transform: scale(1.1); /* Pop effect for selected */
+}
+/* Utility to hide main UI when keyboard is (assumed) open */
+.keyboard-open .bottom-nav,
+.keyboard-open .formatting-menu {
+  display: none !important; /* Force hide */
+}
+
+
+/* Publish Page Specific (from 9_publish.html) */
+.schedule-popup {
+  display: none; /* JS controlled */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 90%;
+  max-width: 320px;
+  /* Background, padding, border-radius are Tailwind classes in HTML */
+}
+.popup-overlay { /* Shared with color picker overlay */
+  display: none; /* JS controlled */
+  /* Styles are same as color-picker-overlay, can be merged if identical */
+}
+.show { /* Utility class to display popups */
+  display: block !important;
+}
+.character-counter {
+  font-size: 12px;
+  margin-top: -8px; /* Pull up slightly */
+  margin-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: flex-end;
+  color: var(--text-secondary); /* Default color */
+}
+.counter-green { color: #22c55e; } /* Tailwind green-500 */
+.counter-white { color: var(--text-primary); }
+.counter-red { color: #ef4444; } /* Tailwind red-500 */
+
+.schedule-text { /* Text displayed on schedule button after date/time selection */
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Ensure it doesn't overflow button */
+}

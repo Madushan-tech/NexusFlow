@@ -14,195 +14,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <style>
-    :root {
-      --bg-primary: #121416;
-      --bg-secondary: #1e2124;
-      --border-color: #2c3135;
-      --text-primary: #ffffff;
-      --text-secondary: #9cabba;
-      --accent-color: #dce8f3;
-      --accent-hover: #c5d5e8;
-      --bottom-nav-height: 60px;
-      --header-height: 56px;
-      --toolbar-height: 48px;
-      --safe-area-bottom: env(safe-area-inset-bottom, 0px);
-    }
-    
-    html, body {
-      height: 100%;
-      overflow-y: auto;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
-      background-color: #121416;
-      color: white;
-      min-height: 100vh;
-      position: relative;
-      padding-bottom: 60px; /* Height of the bottom menu */
-    }
-    
-    .btn {
-      border: none;
-      background: none;
-      padding: 8px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-primary);
-      cursor: pointer;
-      touch-action: manipulation;
-      min-width: 40px;
-      min-height: 40px;
-    }
-    
-    .btn:active {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .btn-primary {
-      background-color: var(--accent-color);
-      color: var(--bg-primary);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-weight: 500;
-      font-size: 14px;
-    }
-    
-    .btn-primary:active {
-      background-color: var(--accent-hover);
-    }
-    
-    .bottom-sheet {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: calc(var(--bottom-nav-height) + 8px);
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
-      z-index: 14;
-      overflow: hidden;
-      transition: height 0.3s ease;
-      height: auto;
-      max-height: 50vh;
-      overflow-y: auto;
-    }
-    
-    .bottom-sheet-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    .bottom-sheet-content {
-      padding: 12px;
-    }
-    
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: calc(var(--bottom-nav-height) + var(--safe-area-bottom));
-      background-color: var(--bg-secondary);
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      border: 1px solid var(--border-color);
-      border-bottom: none;
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
-      z-index: 15;
-      padding-bottom: var(--safe-area-bottom);
-    }
-    
-    .bottom-nav-content {
-      display: flex;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      height: var(--bottom-nav-height);
-    }
-    
-    .bottom-nav-content::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-width: 64px;
-      height: 100%;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
-      user-select: none;
-    }
-    
-    .nav-item.active {
-      color: var(--accent-color);
-      border-bottom: 2px solid var(--accent-color);
-    }
-    
-    .nav-item:active {
-      opacity: 0.7;
-    }
-    
-    .nav-icon {
-      font-size: 24px;
-      margin-bottom: 2px;
-    }
-    
-    .nav-label {
-      font-size: 11px;
-      font-weight: 500;
-    }
-    
-    
-    .bottom-sheet.collapsed {
-      height: 48px !important;
-      overflow: hidden;
-    }
-
-
-    
-    ..bottom-sheet.collapsed .bottom-sheet-header {
-  justify-content: center;
-  gap: 8px; /* space between text and icon */
-  position: relative;
-}
-
-.bottom-sheet.collapsed .bottom-sheet-header h3 {
-  margin: 0;
-}
-
-.bottom-sheet.collapsed .bottom-sheet-header button {
-  position: static;
-}
-
-
-    /* Center align the last three icons */
-    .nav-item:nth-last-child(-n+3) {
-      text-align: center;
-      align-items: center;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <div class="relative flex size-full min-h-screen flex-col bg-[#121416] dark justify-between group/design-root overflow-x-hidden">
     <div>
       <div class="flex items-center bg-[#121416] p-4 pb-2 justify-between fixed top-0 left-0 right-0 z-10 max-w-md mx-auto">
-        <div class="w-12"></div>
+        <a href="3_image_align.html" class="text-white flex size-12 shrink-0 items-center btn">
+            <span class="material-icons-outlined">arrow_back_ios_new</span>
+        </a>
         <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">NexusFlow</h2>
         <div class="flex w-12 items-center justify-end">
           <button class="btn">
@@ -312,107 +132,42 @@
     <!-- Updated Bottom Navigation with center-aligned bottom 3 icons -->
     <nav class="bottom-nav">
       <div class="bottom-nav-content justify-around">
-        <a href="#" class="nav-item">
+        <a href="2_image.html" class="nav-item">
           <span class="material-icons nav-icon">image</span>
           <span class="nav-label">Image</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="3_image_align.html" class="nav-item">
           <span class="material-icons nav-icon">format_align_center</span>
           <span class="nav-label">Align</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item"> <!-- BG Placeholder -->
           <span class="material-icons-outlined nav-icon">filter_none</span>
           <span class="nav-label">BG</span>
         </a>
-        <a href="#" class="nav-item active">
+        <a href="4_platform.html" class="nav-item active">
           <span class="material-icons nav-icon">devices</span>
           <span class="nav-label">Platform</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="5_opacity.html" class="nav-item">
           <span class="material-icons nav-icon">opacity</span>
           <span class="nav-label">Opacity</span>
         </a>
         <!-- Last three icons are center-aligned -->
-        <a href="#" class="nav-item">
+        <a href="6_scale.html" class="nav-item">
           <span class="material-icons nav-icon">photo_size_select_large</span>
           <span class="nav-label">Scale</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="7_blend.html" class="nav-item">
           <span class="material-icons nav-icon">layers</span>
           <span class="nav-label">Blend</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="8_heading.html" class="nav-item">
           <span class="material-icons nav-icon">title</span>
           <span class="nav-label">Heading</span>
         </a>
       </div>
     </nav>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const platformItems = document.querySelectorAll('.platform-item');
-      const previewContainer = document.getElementById('preview-container');
-      const platformIcons = document.querySelectorAll('.platform-icon');
-      const platformButtons = document.querySelectorAll('.platform-icon-btn');
-      
-      // Set initial platform
-      updatePreview('facebook', '1.91/1', 'Facebook');
-      
-      platformItems.forEach(item => {
-        const button = item.querySelector('.platform-icon-btn');
-        const icon = item.querySelector('.platform-icon');
-        const platform = item.dataset.platform;
-        const ratio = item.dataset.ratio;
-        const name = item.dataset.name;
-        
-        button.addEventListener('click', () => {
-          // Update active state for buttons
-          platformButtons.forEach(btn => {
-            btn.classList.remove('active');
-          });
-          button.classList.add('active');
-          
-          // Update active state for icons
-          platformIcons.forEach(icon => {
-            icon.classList.remove('active');
-          });
-          icon.classList.add('active');
-          
-          // Update preview
-          updatePreview(platform, ratio, name);
-        });
-      });
-      
-      function updatePreview(platform, ratio, name) {
-        previewContainer.className = `w-full bg-[#2c3135] rounded-lg overflow-hidden border border-[#2c3135]`;
-        
-        let aspectRatioText = "";
-        if (ratio === "1.91/1") aspectRatioText = "(1.91:1)";
-        else if (ratio === "1/1") aspectRatioText = "(1:1)";
-        else if (ratio === "16/9") aspectRatioText = "(16:9)";
-        else if (ratio === "9/16") aspectRatioText = "(9:16)";
-        
-        previewContainer.innerHTML = `
-          <div class="w-full h-full bg-[#2c3135] flex items-center justify-center" style="aspect-ratio: ${ratio}">
-            <span class="text-[#9cabba] text-sm">${name} Preview ${aspectRatioText}</span>
-          </div>
-        `;
-      }
-      
-      // Toggle bottom sheet
-      const toggleBtn = document.getElementById('toggle-sheet');
-      const bottomSheet = document.querySelector('.bottom-sheet');
-      const sheetIcon = document.getElementById('sheet-icon');
-      
-      let isExpanded = true;
-      
-      toggleBtn.addEventListener('click', function() {
-        isExpanded = !isExpanded;
-        bottomSheet.classList.toggle('collapsed');
-        sheetIcon.textContent = isExpanded ? 'expand_less' : 'expand_more';
-      });
-    });
-  </script>
+  <script src="assets/js/script.js" defer></script>
 </body>
 </html>
